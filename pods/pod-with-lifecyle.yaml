@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-lifecycle
+  namespace: devops
+spec:
+  containers:
+  - name: lifecycle-demo
+    image: busybox
+    lifecycle:
+      postStart:
+        exec:
+          command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+      preStop:
+        exec:
+          command: ["/bin/sh", "-c", "echo Goodbye from the preStop handler > /usr/share/message"]
